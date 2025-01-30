@@ -16,10 +16,6 @@ venv/
 *.env
 *.DS_Store
 
-# Data files
-data/*.csv
-data/*.xlsx
-
 # System files
 Thumbs.db
 desktop.ini
