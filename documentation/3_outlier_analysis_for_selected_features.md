@@ -261,6 +261,7 @@ Since both **Ct (Carburization Time)** and **Dt (Diffusion Time)** are highly sk
 - If carburization time is short but diffusion is longer, the metal might still have improved fatigue properties.
 
 **Decision: Remove `Ct`, Keep `Dt`**
+
 ✅ Why Keep `Dt` (Diffusion Time)?
 - Diffusion affects the entire material, not just the surface.
 - More relevant for fatigue strength, which depends on deep material properties, not just surface hardening.
