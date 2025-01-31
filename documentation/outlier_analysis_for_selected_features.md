@@ -249,12 +249,13 @@ The **final skewness results** confirm that the transformations have successfull
 Since both **Ct (Carburization Time)** and **Dt (Diffusion Time)** are highly skewed and show a large number of outliers, we need to decide which one to remove while keeping the most relevant feature for predicting fatigue strength. **Both `Ct` and `Dt` had extremely high VIF values (>10), meaning they were highly redundant.**
 
 **🔹 Domain Knowledge Considerations**
+
 **1️⃣ Carburization Time (Ct)**
 - Represents the time during which a metal is exposed to a carbon-rich environment to increase surface hardness.
 - Mainly impacts surface properties, which may not significantly influence the overall fatigue strength.
 - If diffusion is already considered in another feature (e.g., Dt), it might be redundant.
 
-- **2️⃣ Diffusion Time (Dt)**
+**2️⃣ Diffusion Time (Dt)**
 - Represents the time allowed for carbon (or other elements) to diffuse deeper into the metal.
 - More critical for internal material strength, which directly affects fatigue resistance over long cycles.
 - If carburization time is short but diffusion is longer, the metal might still have improved fatigue properties.
@@ -269,7 +270,6 @@ Since both **Ct (Carburization Time)** and **Dt (Diffusion Time)** are highly sk
 - More focused on surface hardening, which may be less critical for fatigue strength.
 - If `Dt` is present, `Ct` could be redundant and introduce multicollinearity.
 
-
-## Final Decision:
+## Conclusion:
 - The dataset is now well-prepared for model training with a better distribution balance.
 - Next Steps: We can proceed with feature scaling and move on to model training.
