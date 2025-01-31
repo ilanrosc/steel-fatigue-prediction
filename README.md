@@ -57,7 +57,6 @@ steel-fatigue-prediction/
 │── data/                  # Raw dataset
 │── documentation/         # All .md documentation files
 │── notebooks/             # Jupyter Notebooks
-│── src/                   # Python scripts
 │── README.md              # Project overview
 │── requirements.txt       # Python dependencies
 │── .gitignore             # Ignored files
@@ -65,7 +64,7 @@ steel-fatigue-prediction/
 ```
 
 ## 📈 Results and Findings
-Key findings and model performance metrics will be documented here.
+Key findings and model performance metrics are documented in `documentation/` folder.
 
 ## 📬 Contact
 For any inquiries, please reach out to [ilana.roscina@gmail.com].
