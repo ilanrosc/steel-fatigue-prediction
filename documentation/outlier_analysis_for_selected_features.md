@@ -114,7 +114,7 @@ If a feature is highly skewed, applying transformations such as log, square root
 - **Features with high negative skewness (< -1.5):** `TT` shows left-skewness, which may require a **power transformation**.
 - **Features close to normal (-1 to 1):** `NT, C, P, Cr, Mo, dA` are nearly symmetric and may not need transformations.
 
-**Observations from Our Dataset**
+## Observations from Our Dataset
 - **Highly right-skewed features (>+1.5):**
 	- **Si (5.945), QmT (4.456), RedRatio (3.794), Dt (3.410), Ct (3.072), Mn (1.722)**
 	- These features have **extreme high values**, meaning they contain **significant outliers** in the upper range.
@@ -126,13 +126,14 @@ If a feature is highly skewed, applying transformations such as log, square root
 	- These features show **mild skewness**, and transformations may not be necessary.
 
 **Decision on Next Steps**
+
 Since several features (**Si, QmT, RedRatio, Dt, Ct, Mn, and TT**) have **high skewness**, we will apply **data transformations** to reduce skewness before moving to model training.
 
 - **For right-skewed features**, we will use **log transformation** (log1p) or **Box-Cox transformation** (if data is strictly positive).
 - **For the left-skewed feature (TT)**, we may apply a **Box-Cox transformation**.
 - **For mildly skewed features**, no transformation is needed unless further analysis suggests otherwise.
 
-**The Zero/Negative Value Analysis shows that:**
+## The Zero/Negative Value Analysis shows that:
 
 **Final Transformation Decision:**
 | Feature | Skewness | Zero/Negative Values? | Best Transformation|
@@ -146,15 +147,18 @@ Since several features (**Si, QmT, RedRatio, Dt, Ct, Mn, and TT**) have **high s
 |**TT (-1.868)** | ❌ Left-skewed | ❌ No | Box-Cox |
 
 
-**Next Steps**
+## Next Steps
+
 We will now:
 
 1. Apply Box-Cox transformation to Si, QmT, RedRatio, Mn, and TT.
 2. Apply Log transformation (log1p) to Dt and Ct (since they contain zeros).
 
-**Summary of What We Did:**
+## Summary of What We Did:
+
 ✅ **Applied Box-Cox transformation** to:
 - **Si, QmT, RedRatio, Mn, and TT** (since they are strictly positive).
+
 ✅ **Applied Log transformation** (log1p) to:
 - **Dt and Ct** (since they contain zero values).
 
@@ -163,7 +167,8 @@ Significant improvement in skewness for all features:
 - **Si (-0.294), QmT (0.000), RedRatio (0.008), and Mn (-0.102)** are now close to 0, indicating near-normal distribution.
 - **TT (-1.014)** still has some **left skewness**, but it's significantly reduced.
 
-**Final Skewness Analysis After Transformation**
+## Final Skewness Analysis After Transformation
+
 The **final skewness results** confirm that the transformations have successfully reduced skewness:
 
 | Feature | Skewness Before | Skewness After |
@@ -174,7 +179,8 @@ The **final skewness results** confirm that the transformations have successfull
 | Mn | 1.722 | -0.102 ✅ (Much improved) |
 | TT | -1.868 | -1.014 ⚠️ (Still left-skewed, but better) |
 
-**Final Feature Status Summary:**
+## Final Feature Status Summary:
+
 | Feature | Initial Skewness | Final Skewness | Transformation Applied |
 |---------|------------------|----------------|------------------------|
 |      **NT** |  0.682 |    NaN |        None |
@@ -202,28 +208,32 @@ The **final skewness results** confirm that the transformations have successfull
 	- NT, C, P, Cr, Mo, dA
 	- ✅ These features had acceptable skewness and did not require transformation.
 
-** Final Correlation Check:**
-- **1️⃣ Strong Positive Correlations (Potential Multicollinearity)**
+## Final Correlation Check:
+
+**1️⃣ Strong Positive Correlations (Potential Multicollinearity)**
 - **Ct, Dt, QmT** are **highly correlated** with each other (>0.98).
 	- This suggests that these features might **contain redundant information**.
 	- We may need to remove one of them or apply dimensionality reduction (e.g., PCA, VIF check).
 - **Cr and Mo (0.61)** → Indicates **a moderate correlation**, but not necessarily an issue.
 
-- **2️⃣ Strong Negative Correlations**
+**2️⃣ Strong Negative Correlations**
 - **NT and C (-0.88)** → Suggests an inverse relationship between these two features.
 - **NT and TT (-0.57)** → Shows that as NT increases, TT decreases.
 - **Ct, Dt, QmT vs. TT (-0.73 to -0.74)** → Suggests a strong inverse relationship, meaning TT behaves differently from these.
-- **3️⃣ Low or Weak Correlations (Feature Independence)**
+**3️⃣ Low or Weak Correlations (Feature Independence)**
 - **Si, Mn, P, RedRatio, dA** have mostly weak correlations (< |0.3|) with other features.
 - These features **should be kept** as they bring independent information.
 
 
-**📌 Next Steps: How Should We Handle This?**
-** Multicollinearity Check for Ct, Dt, QmT**
+## 📌 Next Steps: How Should We Handle This?
+
+**Multicollinearity Check for Ct, Dt, QmT**
+
 ✅ Apply Variance Inflation Factor (VIF) to see if one should be removed.
+
 ✅ If VIF is very high (>10) for one feature, we drop it.
 
-**VIF Analysis Interpretation & Next Steps**
+**VIF Analysis Interpretation**
 |Feature | VIF Value | Interpretation |
 |--------|-----------|----------------|
 |Ct | 27.21 | 🚨 High multicollinearity |
@@ -235,6 +245,7 @@ The **final skewness results** confirm that the transformations have successfull
 - **QmT has a low VIF (1.12)** → It does **not contribute to multicollinearity** and can be safely kept.
 
 **📌 Decision: Remove *Ct* or *Dt* Based on Domain Knowledge**
+
 Since both **Ct (Carburization Time)** and **Dt (Diffusion Time)** are highly skewed and show a large number of outliers, we need to decide which one to remove while keeping the most relevant feature for predicting fatigue strength. **Both `Ct` and `Dt` had extremely high VIF values (>10), meaning they were highly redundant.**
 
 **🔹 Domain Knowledge Considerations**
@@ -259,6 +270,6 @@ Since both **Ct (Carburization Time)** and **Dt (Diffusion Time)** are highly sk
 - If `Dt` is present, `Ct` could be redundant and introduce multicollinearity.
 
 
-**Final Decision:**
+## Final Decision:
 - The dataset is now well-prepared for model training with a better distribution balance.
 - Next Steps: We can proceed with feature scaling and move on to model training.
