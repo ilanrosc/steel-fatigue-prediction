@@ -89,6 +89,50 @@ Feature selection is an essential step in preparing our dataset for machine lear
 ---
 
 ## 📊 Final Selected Features
+
+Now that we have VIF and SHAP feature importance results, let’s finalize feature selection methodically.
+
+🔹 Identify Features to Remove
+
+We will remove features that are redundant based on: 
+
+✅ **VIF > 5** → Indicates high multicollinearity (drop the less important ones).
+
+✅ **SHAP Value close to 0** → Feature has low impact on predictions.
+
+✅ **Both VIF and SHAP agree on removal** → Strong candidate for dropping.
+
+
+**📌 Action: List Features to Remove**
+
+Let's categorize the features based on VIF and SHAP results.
+
+**1️⃣ Features with Extremely High VIF (Multicollinearity Concern)**
+
+From our VIF results:
+
+- Tt (∞)
+- THt (∞)
+- TCr (∞)
+- CT (9.14M)
+- THT (5806.69)
+- DT (4742.95)
+
+🚨 These are highly redundant and should likely be removed.
+
+**2️⃣ Features with Very Low SHAP Importance**
+
+From SHAP results (values close to 0):
+
+- THQCr (0.96)
+- S (0.95)
+- Ni (0.67)
+- Cu (0.67)
+- dB (0.49)
+- dC (0.42)
+
+🚨 These features contribute very little to predictions.
+
 After applying **VIF analysis and SHAP feature importance**, we have removed redundant and less important features. The final selected features are:
 
 | Feature | Description |
@@ -119,7 +163,5 @@ These features represent the **most important predictors** for **fatigue strengt
 ---
 
 ### **📌 Next Steps**
-✅ **Apply feature transformations (scaling, normalization, etc.)**  
-✅ **Prepare dataset for model training and evaluation.**  
 
 We are now ready to move to **outlier treatment and feature transformations** before building the predictive model. 🚀

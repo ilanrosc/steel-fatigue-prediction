@@ -17,6 +17,37 @@ To identify outliers, we used **boxplots** and the **Interquartile Range (IQR) m
 - The **IQR method** was used to detect extreme values numerically, confirming the findings from boxplots.
 - The number of outliers per feature was computed and summarized in the results.
 
+**Outliers detected (IQR method):**
+|Feature | IQR-Based Outlier Count |
+|--------| ------------------------|
+| Sl. No. | 0 |
+| NT | 173 |
+| THT | 92 |
+| THt | 59 | 
+| THQCr | 161 | 
+| CT | 48 | 
+| Ct | 48 | 
+| DT | 48 |
+| Dt | 48 | 
+| QmT | 48 |
+| TT | 59 |
+| Tt | 59 |
+| TCr | 59 |
+| C | 38 | 
+| Si | 15 |
+| Mn | 96 |
+| P | 3 |
+| S | 0 |
+| Ni | 102 | 
+| Cr | 0 |
+| Cu | 2 | 
+| Mo | 0 |
+| RedRatio | 3 |
+| dA | 0 |
+| dB | 96 |
+| dC | 35 |
+| Fatigue | 63 |
+
 ---
 
 ## 2️⃣ Feature Distributions

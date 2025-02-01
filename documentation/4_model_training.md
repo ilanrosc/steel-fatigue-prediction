@@ -38,8 +38,8 @@ Since our dataset is likely **small-to-medium in size**, and we are predicting *
 1. **Perform train-test split** and train the selected models.
 2. **Compare model performance using MAE, MSE, and R² score.**
 3. **Fine-tune hyperparameters for the best-performing model.**
-4. **Finalize and deploy the model for predictions.**
-
+4. **Check Training vs. Testing Performance**
+5. **Finalize and deploy the model for predictions.**
 
 ## **7. Model Performance Comparison & Best Model Selection**
 
@@ -75,7 +75,6 @@ Based on the comparison, **XGBoost is the best model for fatigue strength predic
 2. **Analyze Feature Importance** → Identify the most influential factors in fatigue strength prediction.  
 3. **Deploy the XGBoost Model** → Save the trained model for real-world predictions.  
 
-
 ## **8. Hyperparameter Tuning Results for XGBoost**
 
 ### **Best Hyperparameters for XGBoost**
@@ -104,8 +103,7 @@ Based on the comparison, **XGBoost is the best model for fatigue strength predic
 - **Compared to default XGBoost, this optimized model performs better** while avoiding overfitting.  
 
 ### **📌 Next Steps**
-1. **Analyze Feature Importance** to identify key predictors.  
-2. **Save & Deploy the Trained Model** for real-world predictions.  
+1. **Analyze Feature Importance** to identify key predictors. 
 
 # **9. Feature Importance Analysis (XGBoost)**
 
@@ -153,5 +151,40 @@ Based on the comparison, **XGBoost is the best model for fatigue strength predic
 - **Although `QmT` had zero feature importance, removing it still impacted the model’s generalization**. This could be due to **correlations with other features** that were not captured in the importance scores.
 
 ### **✅ Next Steps**
-1. **Restore `QmT` and keep all features** (since removing it worsened performance).  
-2. **Proceed with final model selection and deployment with all features.**  
+1. **Restore `QmT` and keep all features** (since removing it worsened performance). 
+2. **Check Training vs. Testing Performance**
+3. **Proceed with final model selection and deployment with all features.**  
+
+## **11. Overfitting Analysis: Training vs. Testing Performance**
+
+| **Metric**  | **Training Score** | **Testing Score** | **Observation** |
+|-------------|------------------|-----------------|----------------|
+| **MAE (Mean Absolute Error)**  | **5.39**  | **16.56**  | **Large gap → Overfitting risk** ⚠️ |
+| **MSE (Mean Squared Error)**  | **59.67** | **574.02** | **Large increase in test error** ⚠️ |
+| **R² Score**  | **0.998**  | **0.986**  | **High but slight drop → Overfitting potential** ⚠️ |
+
+### **🔍 Interpretation**
+- **The model is highly accurate, but there are signs of overfitting**:
+  - **Training error is significantly lower than test error** (MAE: **5.39 vs. 16.56**).
+  - **MSE is much smaller in training but spikes in testing** (**59.67 vs. 574.02**).
+  - **R² Score drops slightly from 0.998 to 0.986**, showing generalization is still good, but not perfect.
+
+### **✅ Decision:**
+- Since we **do not have additional data** and the **model performs well overall**, we **decided to keep the current model as is**.
+- **We acknowledge the slight overfitting but accept it due to data limitations**.
+- The model is now **finalized for deployment**.
+
+### **7. Final Model Selection and Deployment**
+
+| **Metric**  | **Final XGBoost Model Performance** |
+|-------------|------------------------------|
+| **MAE (Mean Absolute Error)**  | **16.56**  |
+| **MSE (Mean Squared Error)**  | **574.02**  |
+| **R² Score**  | **0.9861**  |
+
+### **✅ Final Decision**
+- **XGBoost is selected as the final model** due to its superior accuracy and robustness.
+- **The final model includes all features**, as removing `QmT` led to performance degradation.
+- **The trained model has been saved** as `final_xgboost_model.pkl`.
+
+

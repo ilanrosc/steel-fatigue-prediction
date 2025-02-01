@@ -102,5 +102,5 @@ Now that we understand the dataset's context, the next step is to:
 2. Identify **missing values and outliers**.
 3. Analyze **correlations and distributions**.
 
-The results of EDA will be documented in `EDA.md`.
+The results of EDA will be documented in `1_1_Initial_EDA_findings.md` and `1_2_EDA_outliers_relationship_findings.md`.
 

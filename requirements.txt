@@ -1,8 +1,17 @@
-pandas==1.5.3
-numpy==1.23.5
-matplotlib==3.6.2
-seaborn==0.12.1
-scikit-learn==1.2.0
-jupyter==1.0.0
-shap==0.41.0   # For model interpretability
+# Core Python Libraries
+numpy==2.1.3
+pandas==2.2.3
+scipy==1.15.1
+
+# Machine Learning & Model Training
+statsmodels==0.14.4
+scikit-learn==1.6.1
 xgboost==2.1.3
+shap==0.46.0
+
+# Data Visualization (if needed)
+matplotlib==3.10.0
+seaborn==0.13.2
+
+# Model Saving & Deployment
+joblib==1.4.2

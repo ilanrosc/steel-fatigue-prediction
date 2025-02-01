@@ -1,7 +1,7 @@
 # Outlier Analysis for Selected Features
 
 ## 📌 Overview
-Before proceeding with model training, we need to analyze and treat potential outliers in our **final selected features** to ensure data quality and model stability. This step helps identify extreme values that might distort model performance.
+Before proceeding with model training, we need to analyze and treat potential outliers in our **selected features** to ensure data quality and model stability. This step helps identify extreme values that might distort model performance.
 
 ## 🔹 Selected Features for Analysis
 The following features were retained after **Feature Selection** and will be analyzed for outliers:
@@ -220,6 +220,7 @@ The **final skewness results** confirm that the transformations have successfull
 - **NT and C (-0.88)** → Suggests an inverse relationship between these two features.
 - **NT and TT (-0.57)** → Shows that as NT increases, TT decreases.
 - **Ct, Dt, QmT vs. TT (-0.73 to -0.74)** → Suggests a strong inverse relationship, meaning TT behaves differently from these.
+
 **3️⃣ Low or Weak Correlations (Feature Independence)**
 - **Si, Mn, P, RedRatio, dA** have mostly weak correlations (< |0.3|) with other features.
 - These features **should be kept** as they bring independent information.
